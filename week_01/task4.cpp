@@ -19,60 +19,92 @@ struct Doctor
 
     void print() const
     {
-        std::cout << "Last name: " << name << std::endl;
-        std::cout << "Years of experience: " << yearsExperience << std::endl;
+        std::cout << "-------------------------------" << std::endl;
+        std::cout << "Name: Dr. " << name << std::endl;
+        std::cout << "Experience: " << yearsExperience << " years" << std::endl;
         std::cout << "Hospital: " << hospital << std::endl;
-        std::cout << "Gender ([F] - for female, [M] - for male): " << gender << std::endl;
+        std::cout << "Gender: " << gender << std::endl;
+        std::cout << "-------------------------------" << std::endl;
+    }
+
+    void changeName()
+    {
+        std::cout << "New name: ";
+    }
+
+    void changeHospital()
+    {
     }
 };
 
-struct Collective
+void sortByExperience(Doctor *tenDoctors)
 {
-    Doctor doctors[9];
-
-    void sortByExperience()
+    for (int i = 0; i < 10; ++i)
     {
-        for (int i = 0; i < 4; ++i)
+        for (int j = i + 1; j < 10; ++j)
         {
-            for (int j = i + 1; j < 4; ++j)
+            if (tenDoctors[i].yearsExperience > tenDoctors[j].yearsExperience)
             {
-                if (doctors[i].yearsExperience > doctors[j].yearsExperience)
-                {
-                    std::swap(doctors[i], doctors[j]);
-                }
+                std::swap(tenDoctors[i], tenDoctors[j]);
             }
         }
     }
-};
+}
 
-void printDoctorInfo(const Collective &doctors)
+void printDoctorInfo(const Doctor *tenDoctors)
 {
     for (int i = 0; i < 10; ++i)
     {
         std::cout << "****************" << std::endl;
-        sortByExperience();
-        doctors.doctors[i].print();
+        tenDoctors[i].print();
         std::cout << "****************" << std::endl;
     }
 }
 
 int main()
 {
-    Collective tenDoctors;
+    Doctor tenDoctors[9];
+    int specific;
 
     for (int i = 0; i < 10; ++i)
     {
         std::cout << "============" << std::endl;
+
         std::cout << "Enter a last name of the doctor: ";
-        std::cin.getline(tenDoctors.doctors[i].name, 32);
+        std::cin.getline(tenDoctors[i].name, 32);
+
         std::cout << "Enter years of experience: ";
-        std::cin >> tenDoctors.doctors[i].yearsExperience;
+        std::cin >> tenDoctors[i].yearsExperience;
+        std::cin.ignore();
+
         std::cout << "Enter a hospital: ";
-        std::cin.getline(tenDoctors.doctors[i].hospital, 32);
+        std::cin.getline(tenDoctors[i].hospital, 32);
+
         std::cout << "Enter gender ([F] - for female, [M] - for male): ";
-        std::cin >> tenDoctors.doctors[i].gender;
+        std::cin >> tenDoctors[i].gender;
+
         std::cout << "============" << std::endl;
         std::cin.ignore();
+    }
+
+    std::cout << "Choose a doctor from 1-10 to display info: ";
+    std::cin >> specific;
+    tenDoctors[specific - 1].print();
+
+    int nameChanger;
+    std::cout << "1 - change name \n2 - change hospital: ";
+    std::cin >> nameChanger;
+    if (nameChanger == 1)
+    {
+
+    }
+    else if (nameChanger == 2)
+    {
+
+    }
+    else
+    {
+        
     }
 
     return 0;
