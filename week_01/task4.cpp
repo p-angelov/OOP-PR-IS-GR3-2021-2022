@@ -3,6 +3,10 @@
 а) Създайте структура Doctor, който има фамилия, години стаж, име на болница, в която работи и пол.
 Структурата да притежава методи за изкарване на цялата информация на конкретен лекар, метод за
 смяна на фамилията и метод за смяна на името на болницата.
+-структура Доктор
+-метод за конкретен доктор
+-метод за смяна на фамилията
+-метод за смяна на болницата
 
 б) Създайте масив от 10 доктора, след което ги сортирайте по години стаж.
 */
@@ -53,7 +57,7 @@ void sortByExperience(Doctor *tenDoctors)
 
 void printDoctorInfo(const Doctor *tenDoctors)
 {
-    for (int i = 0; i < 10; ++i)
+    for (int i = 0; i < 3; ++i)
     {
         std::cout << "****************" << std::endl;
         tenDoctors[i].print();
@@ -66,7 +70,7 @@ int main()
     Doctor tenDoctors[9];
     int specific;
 
-    for (int i = 0; i < 10; ++i)
+    for (int i = 0; i < 3; ++i)
     {
         std::cout << "============" << std::endl;
 
@@ -87,13 +91,17 @@ int main()
         std::cin.ignore();
     }
 
+    //Doctor search
     std::cout << "Choose a doctor from 1-10 to display info: ";
     std::cin >> specific;
     tenDoctors[specific - 1].print();
 
+    
+    //name and hopsital changer
     int nameChanger;
     std::cout << "1 - change name \n2 - change hospital: ";
     std::cin >> nameChanger;
+
     if (nameChanger == 1)
     {
 
