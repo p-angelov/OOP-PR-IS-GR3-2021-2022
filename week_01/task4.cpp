@@ -31,21 +31,40 @@ struct Doctor
         std::cout << "-------------------------------" << std::endl;
     }
 
-    void changeName()
+    //doctor search function
+    int specific;
+    
+    void searchDoctor(Doctor doctor[])
     {
+        std::cout << "Choose a doctor from 1-10 to display info: ";
+        std::cin >> specific;
+        doctor[specific - 1].print();
+    }
+    /*
+    int index = specific - 1;
+    void changeName(Doctor doctor[index])
+    {
+        char newName[32];
         std::cout << "New name: ";
+        std::cin.getline(newName, 32);
+        *tenDoctors[specific - 1].name = *newName;
     }
 
     void changeHospital()
     {
+        char newHospital[32];
+        std::cout << "New hospital: ";
+        std::cin.getline(newHospital, 32);
+        *tenDoctors[specific - 1].hospital = *newHospital;
     }
+    */
 };
 
 void sortByExperience(Doctor *tenDoctors)
 {
-    for (int i = 0; i < 10; ++i)
+    for (int i = 0; i < 3; ++i)
     {
-        for (int j = i + 1; j < 10; ++j)
+        for (int j = i + 1; j < 3; ++j)
         {
             if (tenDoctors[i].yearsExperience > tenDoctors[j].yearsExperience)
             {
@@ -59,16 +78,13 @@ void printDoctorInfo(const Doctor *tenDoctors)
 {
     for (int i = 0; i < 3; ++i)
     {
-        std::cout << "****************" << std::endl;
         tenDoctors[i].print();
-        std::cout << "****************" << std::endl;
     }
 }
 
 int main()
 {
     Doctor tenDoctors[9];
-    int specific;
 
     for (int i = 0; i < 3; ++i)
     {
@@ -91,29 +107,18 @@ int main()
         std::cin.ignore();
     }
 
-    //Doctor search
-    std::cout << "Choose a doctor from 1-10 to display info: ";
-    std::cin >> specific;
-    tenDoctors[specific - 1].print();
+    tenDoctors -> searchDoctor(tenDoctors);
+
+    //name and hopsital changer
+    // int nameChanger;
+    // std::cout << "1 - change name \n2 - change hospital: ";
+    // std::cin >> nameChanger;
+
+    std::cout << "All doctors sorted by years of experience: " << std::endl;
+    sortByExperience(tenDoctors);
+    printDoctorInfo(tenDoctors);
 
     
-    //name and hopsital changer
-    int nameChanger;
-    std::cout << "1 - change name \n2 - change hospital: ";
-    std::cin >> nameChanger;
-
-    if (nameChanger == 1)
-    {
-
-    }
-    else if (nameChanger == 2)
-    {
-
-    }
-    else
-    {
-        
-    }
 
     return 0;
 }
